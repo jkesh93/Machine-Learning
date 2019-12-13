@@ -12,6 +12,7 @@ Video Credit
 # CodeReflex
 
 ## Early portion of code consisted mostly of directory setup and library imports
+
 ### Library Imports
 ```python
     # Numpy for array operations
@@ -28,11 +29,17 @@ Video Credit
 ```
 
 ### Directory setup
-# Specify a data directory -- base directory from which w
+Specifying my base directory and then the categories we'll be using. The directory had struggle similar to
+PetImages -> Dog / Images
+          
+          -> Cat / Images
+```python
 DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImages"
 
 ### Specify categories
 CATEGORIES = ["Dog","Cat"]
+```
+
 
 ### Iterate through all examples of dog and cat
 for category in CATEGORIES:
@@ -43,3 +50,4 @@ for category in CATEGORIES:
         plt.show()
         break
     break
+```
