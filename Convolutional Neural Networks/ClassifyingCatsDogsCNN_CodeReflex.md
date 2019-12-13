@@ -7,7 +7,7 @@ Although I try my best to comment my code neatly, it is often difficult for some
 **All credit** goes to **sentdex** for his incredible tutorials. I encourage anyone who reads my code to watch his videos.
 
 Video Credit
-["sendex"](https://www.youtube.com/user/sentdex "sentdex YouTube Channel")
+["sentdex"](https://www.youtube.com/user/sentdex "sentdex YouTube Channel")
 
 [2nd Video in the series](https://www.youtube.com/watch?v=j-3vuBynnOE "Convolutional Neural Networks...")
 
@@ -132,3 +132,44 @@ In the above X is of shape (26943, 100, 100, 1). This is because there are:
 100 pixels in length by
 100 pixels in wide and
 1 color value (light intensity) in depth
+
+## Building the model
+
+```python
+# Get your libraries
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
+
+# Before feeding data through a neural network, normalize the data. Easiest way to normalize the data is to SCALE the data
+# In imagery data, the max will be 255, so we can just divide by 255
+X = X/255.0
+
+# Build the model
+model = Sequential()
+
+# 64 'windows' or 'filters'. The input shape is X.shape (24946, 100, 100, 1) - 24946 is the number of items in the feature set.
+# The shape of each feature (i.e. image) is (100, 100, 1).
+model.add(Conv2D(64, (3,3), input_shape = X.shape[1:]))
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+model.add(Conv2D(64, (3,3)))
+model.add(Activation("relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+# Need to flatten the layer since dense expects a 1D shape
+model.add(Flatten())
+model.add(Dense(64))
+
+# Add the output layer - a 1 node output
+model.add(Dense(1, activation = "sigmoid"))
+
+# Since we're categorizing between 2 separate things, we'll use binary-crossentropy. Adam is a good optimizer. We'll use "accuracy" as a metrics base.
+model.compile(loss="binary_crossentropy",
+             optimizer="adam",
+             metrics=["accuracy"])
+
+# Feed it images in batches of 32, validation split is 30% (out of sample data)
+model.fit(X, y, batch_size=32, validation_split=0.1, epochs=20)
+```
