@@ -197,7 +197,5 @@ The MaxPooling2D layer takes another window and condenses it. That is, a matrix 
 #### The Flatten Layer ####
 The Flatten layer takes the existing higher dimensionality data and squashes it back into a 1D layer so that it can be fed into the Dense layer.
 
-
-
-
-
+#### Binary-Crossentropy Optimization ####
+*Binary-Crossentropy Optimization* is often used for dealing with binary categorical data.
