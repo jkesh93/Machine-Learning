@@ -41,7 +41,7 @@ DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImag
 CATEGORIES = ["Dog","Cat"]
 ```
 
-## Verify data loads and then build the training dataset
+## Verify the data loads
 
 ### But before building the training data, its best to check that images can be loaded
 
@@ -54,4 +54,35 @@ for category in CATEGORIES:
         plt.show()
         break
     break
+```
+In the above, I have two "break" statements to prevent going through the entire set - I just want to make sure the image loads.
+
+Now that I know the data loads, I can build the training data.
+
+## Build the training data
+Building the training data will consist of setting an image size - that is what width x height is. Data going into a machine learning model is easier done when its a standard size. Also, this reduces data load. To determine a size, I sampled the images at various sizes. As I can tell a dog is a dog even at 100 x 100 pixels, I've chosen to go with 100 pixels for the size.
+
+```python
+IMG_SIZE = 100
+training_data = []
+
+# Get training data
+def create_training_data():
+    for category in CATEGORIES:
+        path = os.path.join(DATADIR, category)
+        
+        # Create classification as a numerical value. In this case it will be the index of the category.
+        class_num = CATEGORIES.index(category)
+        for img in os.listdir(path):
+            # Try to do it, if it fails, skip
+            try:
+                img_array = cv2.imread(os.path.join(path,img),cv2.IMREAD_GRAYSCALE)
+                
+                # Resize images to lessen data load
+                new_array = cv2.resize(img_array, (IMG_SIZE,IMG_SIZE))
+                training_data.append([new_array, class_num])
+            except Exception as e:
+                pass
+
+create_training_data()
 ```
