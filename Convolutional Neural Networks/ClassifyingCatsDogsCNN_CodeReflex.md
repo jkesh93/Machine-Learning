@@ -1,9 +1,9 @@
-# Understanding ClassifyingCatsDogsCNN
+# Understanding ClassifyingCatsDogsCNN #
 My Code Reflections ('CodeReflex') is where I go back and review the code in a way that helps myself and others to understand it at a deeper level than when I first went through it.
 
 Although I try my best to comment my code neatly, it is often difficult for someone who may think of a problem / solution differently to understand, so I have created this markdown to explain my thoughts a little more clearly.
 
-# Source
+# Source #
 **All credit** goes to **sentdex** for his incredible tutorials. I encourage anyone who reads my code to watch his videos.
 
 Video Credit
@@ -13,11 +13,11 @@ Video Credit
 
 [3rd Video in the series](https://www.youtube.com/watch?v=WvoLTXIjBYU "Convolutional Neural Networks...")
 
-# CodeReflex
+# CodeReflex #
 
-## Early portion of code consisted mostly of directory setup and library imports
+## Early portion of code consisted mostly of directory setup and library imports ##
 
-### Library Imports
+### Library Imports ###
 ```python
     # Numpy for array operations
     import numpy as np
@@ -32,7 +32,7 @@ Video Credit
     import cv2
 ```
 
-### Directory setup
+### Directory setup ###
 Specifying my base directory and then the categories we'll be using. The directory had struggle similar to
         
     PetImages -> Dog / Images ** This is my dog training images
@@ -45,9 +45,9 @@ DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImag
 CATEGORIES = ["Dog","Cat"]
 ```
 
-## Verify the data loads
+## Verify the data loads ##
 
-### But before building the training data, its best to check that images can be loaded
+### But before building the training data, its best to check that images can be loaded ###
 
 ```python
 for category in CATEGORIES:
@@ -63,7 +63,7 @@ In the above, I have two "break" statements to prevent going through the entire 
 
 Now that I know the data loads, I can build the training data.
 
-## Build the training data
+## Build the training data ##
 Building the training data will consist of setting an image size - that is what width x height is. Data going into a machine learning model is easier done when its a standard size. Also, this reduces data load. To determine a size, I sampled the images at various sizes. As I can tell a dog is a dog even at 100 x 100 pixels, I've chosen to go with 100 pixels for the size.
 
 ```python
@@ -93,10 +93,10 @@ create_training_data()
 
 ## Randomization and formatting
 
-### Randomization
+### Randomization ###
 Since Machine Learning looks for a way to minmize 'loss' a non-fancy term for 'incorrect answer count', if the data follows the order of **all** cats and then **all** dogs, the machine may opt to just switch to figuring out 'when' that switch occurs. So we need to randomize the presentation of the training data.
 
-### Formatting
+### Formatting ###
 We create the variables **X** and **y**. This is standard practice (the uppercase X for **features** and lowercase **y** for 'label').
 
 **Features** These are our inputs or what is *known*
@@ -123,17 +123,17 @@ X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
 y = np.array(y)
 ```
 
-### Reshaping
+### Reshaping ###
 We need to reshape the data as when we **appended** the features and labels it put them into a **list** which is incompatible. The **shape** of the data is the **dimensionality** of it. **-1** means **any number**.
 
-In the above X is of shape (26943, 100, 100, 1). This is because there are:
+In the above X is of shape (24946, 100, 100, 1). This is because there are:
 
-26943 pictures which are
+24946 pictures which are
 100 pixels in length by
 100 pixels in wide and
 1 color value (light intensity) in depth
 
-## Building the model
+## Building the model ##
 
 ```python
 # Get your libraries
@@ -173,3 +173,10 @@ model.compile(loss="binary_crossentropy",
 # Feed it images in batches of 32, validation split is 30% (out of sample data)
 model.fit(X, y, batch_size=32, validation_split=0.1, epochs=20)
 ```
+
+#### The convolution layer ####
+While the code is mostly self-explanatory, I think one of the things worth point out from the above is that
+
+
+
+
