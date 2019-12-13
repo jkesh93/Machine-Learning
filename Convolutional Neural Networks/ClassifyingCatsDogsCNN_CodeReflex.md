@@ -1,12 +1,16 @@
 # Understanding ClassifyingCatsDogsCNN
-My Code Reflections (CodeReflex) is a breakdown of the code. Although I try my best to comment my code neatly, it is often difficult for someone who may think of a problem / solution differently to understand, so I have created this markdown to explain my thoughts a little more clearly.
+My Code Reflections ('CodeReflex') is where I go back and review the code in a way that helps myself and others to understand it at a deeper level than when I first went through it.
+
+Although I try my best to comment my code neatly, it is often difficult for someone who may think of a problem / solution differently to understand, so I have created this markdown to explain my thoughts a little more clearly.
 
 # Source
 **All credit** goes to **sentdex** for his incredible tutorials. I encourage anyone who reads my code to watch his videos.
 
 Video Credit
 ["sendex"](https://www.youtube.com/user/sentdex "sentdex YouTube Channel")
+
 [2nd Video in the series](https://www.youtube.com/watch?v=j-3vuBynnOE "Convolutional Neural Networks...")
+
 [3rd Video in the series](https://www.youtube.com/watch?v=WvoLTXIjBYU "Convolutional Neural Networks...")
 
 # CodeReflex
@@ -86,3 +90,45 @@ def create_training_data():
 
 create_training_data()
 ```
+
+## Randomization and formatting
+
+### Randomization
+Since Machine Learning looks for a way to minmize 'loss' a non-fancy term for 'incorrect answer count', if the data follows the order of **all** cats and then **all** dogs, the machine may opt to just switch to figuring out 'when' that switch occurs. So we need to randomize the presentation of the training data.
+
+### Formatting
+We create the variables **X** and **y**. This is standard practice (the uppercase X for **features** and lowercase **y** for 'label').
+
+**Features** These are our inputs or what is *known*
+
+**Label** This is what we want to find out or predict for. Also known as ***classification***.
+
+**X/y** In math, f(x) = y is to say that if we put 'x' into a function 'f' then this equals (=) 'y'. In the same way that if we have an image of a dog (X) then we want to put it through our model (f) and get a classification (y).
+
+```python
+# Randomize data to make sure it learns
+import random
+random.shuffle(training_data)
+
+# Capital X are features, lowercase y is your label
+X = []
+y = []
+
+for features, label in training_data:
+    X.append(features)
+    y.append(label)
+
+# Getting correct shape
+X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
+y = np.array(y)
+```
+
+### Reshaping
+We need to reshape the data as when we **appended** the features and labels it put them into a **list** which is incompatible. The **shape** of the data is the **dimensionality** of it. **-1** means **any number**.
+
+In the above X is of shape (26943, 100, 100, 1). This is because there are:
+
+26943 pictures which are
+100 pixels in length by
+100 pixels in wide and
+1 color value (light intensity) in depth
