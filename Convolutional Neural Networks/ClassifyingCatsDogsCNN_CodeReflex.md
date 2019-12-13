@@ -1,5 +1,5 @@
 # Understanding ClassifyingCatsDogsCNN
-This markdown is a breakdown of the code. Although I try my best to comment my code neatly, it is often difficult for someone who may think of a problem / solution differently to understand, so I have created this markdown to explain my thoughts a little more clearly.
+My Code Reflections (CodeReflex) is a breakdown of the code. Although I try my best to comment my code neatly, it is often difficult for someone who may think of a problem / solution differently to understand, so I have created this markdown to explain my thoughts a little more clearly.
 
 # Source
 **All credit** goes to **sentdex** for his incredible tutorials. I encourage anyone who reads my code to watch his videos.
