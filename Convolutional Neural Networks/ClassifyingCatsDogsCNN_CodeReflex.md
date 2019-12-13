@@ -30,9 +30,10 @@ Video Credit
 
 ### Directory setup
 Specifying my base directory and then the categories we'll be using. The directory had struggle similar to
-PetImages -> Dog / Images
-          
-          -> Cat / Images
+        
+    PetImages -> Dog / Images ** This is my dog training images
+                 Cat / Images ** This is my cat training images
+
 ```python
 DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImages"
 
@@ -40,8 +41,11 @@ DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImag
 CATEGORIES = ["Dog","Cat"]
 ```
 
+## Verify data loads and then build the training dataset
 
-### Iterate through all examples of dog and cat
+### But before building the training data, its best to check that images can be loaded
+
+```python
 for category in CATEGORIES:
     path = os.path.join(DATADIR, category)
     for img in os.listdir(path):
