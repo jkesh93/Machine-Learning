@@ -9,9 +9,24 @@ Video Credit
 [2nd Video in the series](https://www.youtube.com/watch?v=j-3vuBynnOE "Convolutional Neural Networks...")
 [3rd Video in the series](https://www.youtube.com/watch?v=WvoLTXIjBYU "Convolutional Neural Networks...")
 
-# Notes
+# CodeReflex
 
 ## Early portion of code consisted mostly of directory setup and library imports
+### Library Imports
+```python
+    # Numpy for array operations
+    import numpy as np
+
+    # Using matplotlib to show the image
+    import matplotlib.pyplot as plt
+
+    # Iterate through directories / join paths
+    import os
+
+    # Image operations
+    import cv2
+```
+
 ### Directory setup
 # Specify a data directory -- base directory from which w
 DATADIR = "C:/Users/Jay/Desktop/Machine_Learning/kagglecatsanddogs_3367a/PetImages"
