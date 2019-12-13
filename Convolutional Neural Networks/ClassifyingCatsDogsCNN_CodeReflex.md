@@ -175,7 +175,28 @@ model.fit(X, y, batch_size=32, validation_split=0.1, epochs=20)
 ```
 
 #### The convolution layer ####
-While the code is mostly self-explanatory, I think one of the things worth point out from the above is that
+While the code is mostly self-explanatory, I think one of the things worth point out from the above is how the keras convolution layer works. It's found in this portion of the code
+```python
+model.add(Conv2D(64, (3,3), input_shape = X.shape[1:]))
+```
+What we see in the above is that we're asking for the following
+
+64 is the output shape
+3,3 is the 'window'
+X.shape[1:] is the input shape
+
+**Output shape**
+When we talk about shape, we're talking about dimensionality and so the output shape is going to be a *feature map* with a dimension of 64.
+
+**Window**
+3,3 is the window size. In a convolutional neural network, there is some subsampling going on and as such this 'area' / 'window' whatever we want to call it is going to be defined as our (input dimensionality x some height). As our incoming data shape is a vector of 3 (x,x,x) and so we're saying we are considering 3 of those stacked on top of each other.
+
+#### The MaxPooling2D layer ####
+The MaxPooling2D layer takes another window and condenses it. That is, a matrix operation is performed and the large feature map from before is reduced to a smaller one and reducing the complexity of the overall operation.
+
+#### The Flatten Layer ####
+The Flatten layer takes the existing higher dimensionality data and squashes it back into a 1D layer so that it can be fed into the Dense layer.
+
 
 
 
